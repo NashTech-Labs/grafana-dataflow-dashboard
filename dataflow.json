@@ -1,0 +1,2485 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 458,
+  "iteration": 1657111791294,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 36,
+      "panels": [],
+      "title": "Dataflow Job",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 1
+      },
+      "id": 40,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_NONE",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/is_failed",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Job failed",
+      "type": "gauge"
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "sum"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "1m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Job failed alert",
+        "noDataState": "keep_state",
+        "notifications": [
+          {
+             
+          }
+        ]
+      },
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "dataflow.googleapis.com/job/is_failed"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 10,
+        "x": 4,
+        "y": 1
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_NONE",
+            "editorMode": "visual",
+            "filters": [
+              "resource.label.job_name",
+              "=",
+              "${jobname}"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/is_failed",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "op": "gt",
+          "value": 0,
+          "visible": true
+        }
+      ],
+      "title": "Job failed",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "Duration that the current run of this pipeline has been in the Running state so far, in seconds. When a run completes, this stays at the duration of that run until the next run starts.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 14,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^dataflow\\.googleapis\\.com/job/elapsed_time$/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "+60s",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/elapsed_time",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Elapsed Time",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The total GB seconds for all persistent disk used by all workers associated with this Dataflow job.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decgbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/total_pd_usage_time HDD"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "GB seconds by HDD"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/total_pd_usage_time SSD"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "GB seconds by SSD"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 7,
+        "x": 17,
+        "y": 1
+      },
+      "id": 22,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [
+              "metric.label.storage_type"
+            ],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/total_pd_usage_time",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Total PD usage Time",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "Estimated time in milliseconds spent running in the function of the ptransform totaled across threads on all workers of the job.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 14,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/thread_time ParDo(FormDataDlp)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Form Data DLP"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 40
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/thread_time ParDo(FormDataToCloudStorage)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FormDataToCloudStorage"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 24
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/thread_time Read PubSub messages/MapElements/Map"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Read PubSub message"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/thread_time ParDo(FormDataToBigQuery)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FormDataToBigQuery"
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 7
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/thread_time Read PubSub messages/PubsubUnboundedSource"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Read PubSub messages/PubsubUnboundedSource"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 17,
+        "x": 0,
+        "y": 7
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [
+              "metric.label.ptransform"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "dataflow.googleapis.com/job/thread_time",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Thread Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The amount of persistent disk currently being allocated to all workers associated with this Dataflow job.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/disk_space_capacity HDD"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "HDD"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/disk_space_capacity SSD"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SSD"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 7
+      },
+      "id": 42,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [
+              "metric.label.storage_type"
+            ],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/disk_space_capacity",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Disk Space capacity",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "Pub/Sub Pull request latencies from PubsubIO.Read in Dataflow jobs. For Streaming Engine, this metric is deprecated. See the \"Using the Dataflow monitoring interface\" page for upcoming changes.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 12,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "dataflow.googleapis.com/job/pubsub/read_latencies ${jobname}"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 17,
+        "x": 0,
+        "y": 14
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [
+              "resource.label.job_name"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "dataflow.googleapis.com/job/pubsub/read_latencies",
+            "perSeriesAligner": "ALIGN_DELTA",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "DISTRIBUTION"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Pub/Sub Pull Request Latencies",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The total bytes of streaming data processed by this Dataflow job.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 17,
+        "y": 14
+      },
+      "id": 26,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/total_streaming_data_processed",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Total streaming data processed",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The total bytes of shuffle data processed by this Dataflow job",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 21,
+        "y": 14
+      },
+      "id": 24,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/total_shuffle_data_processed",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Total shuffle data processed",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 56,
+      "panels": [],
+      "title": "CPU / Memory ",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-purple",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "semi-dark-purple",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 70
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 0,
+        "y": 22
+      },
+      "id": 48,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {
+          "titleSize": 10
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [
+              "AND",
+              "resource.type",
+              "=",
+              "gce_instance"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/instance/cpu/utilization",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "DOUBLE"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Utilisation",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-purple",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 11,
+        "x": 3,
+        "y": 22
+      },
+      "id": 57,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "${compute}",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/instance/cpu/utilization",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "DOUBLE"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "CPU Utilisation",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The total vCPU seconds used by this Dataflow job.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 14,
+        "y": 22
+      },
+      "id": 28,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/total_vcpu_time",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Total vCPU time",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The number of vCPUs currently being used by this Dataflow job. This is the current number of workers times the number of vCPUs per worker.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 19,
+        "y": 22
+      },
+      "id": 2,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/current_num_vcpus",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Current number of vCPUs in use",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "Estimated memory used vs memory limit in bytes for the worker which uses the most memory in this Dataflow job. This chart can be used for debugging OOM (Out of Memory) issues.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-green",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 3590000000,
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 60
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 0,
+        "y": 28
+      },
+      "id": 58,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "Max worker memory Usage",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "metric.label.state",
+              "!=",
+              "free"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/guest/memory/bytes_used",
+            "perSeriesAligner": "ALIGN_MAX",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Memory utilization",
+      "transformations": [],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "Estimated memory used vs memory limit in bytes for the worker which uses the most memory in this Dataflow job. This chart can be used for debugging OOM (Out of Memory) issues.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Max worker memory Capacity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 25
+              },
+              {
+                "id": "custom.gradientMode",
+                "value": "opacity"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "C {resource.type=\"gce_instance\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Usage in percents"
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              },
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Max worker memory Usage",
+                  "Max worker memory Capacity"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 3,
+        "y": 28
+      },
+      "id": 50,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metricQuery": {
+            "aliasBy": "Max worker memory Usage",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "metric.label.state",
+              "!=",
+              "free",
+              "AND",
+              "resource.type",
+              "=",
+              "gce_instance"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/guest/memory/bytes_used",
+            "perSeriesAligner": "ALIGN_MAX",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "hide": false,
+          "metricQuery": {
+            "aliasBy": "Max worker memory Capacity",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance"
+          
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/guest/memory/bytes_used",
+            "perSeriesAligner": "ALIGN_MAX",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$A/$B*100",
+          "hide": true,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Memory utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The amount of memory currently being allocated to all workers associated with this Dataflow job.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 14,
+        "y": 28
+      },
+      "id": 12,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "dataflow_job"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/memory_capacity",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Memory capacity",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "decgbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 5,
+        "x": 19,
+        "y": 28
+      },
+      "id": 20,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "total_memory_usage_time ",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MEAN",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/total_memory_usage_time",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Total memory usage Time",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 60,
+      "panels": [],
+      "title": "Overview Metric",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The number of elements produced by each PTransform",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "element/s"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/elements_produced_count ParDo(FormDataDlp)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FormDataDLP"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/elements_produced_count ParDo(FormDataToCloudStorage)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "FormDataToCloudStorage"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/elements_produced_count Read PubSub messages/MapElements/Map"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Read PubSub messages /MapsElements/Map"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dataflow.googleapis.com/job/elements_produced_count Read PubSub messages/PubsubUnboundedSource"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Read PubSub messages /PubSubUnboundedSource"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 21,
+        "x": 0,
+        "y": 36
+      },
+      "id": 54,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [
+              "metric.label.ptransform"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "dataflow.googleapis.com/job/elements_produced_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Throughput",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The current maximum duration that an item of data has been processing or awaiting processing, in seconds.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 3,
+        "x": 21,
+        "y": 36
+      },
+      "id": 41,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_MAX",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [
+              "resource.label.job_name"
+            ],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/system_lag",
+            "perSeriesAligner": "ALIGN_MAX",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "System lag",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "The age (time since event timestamp) up to which all data has been processed by the pipeline.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 45
+      },
+      "id": 52,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "cloud-monitoring-auto",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "dataflow.googleapis.com/job/data_watermark_age",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Data Freshness",
+      "type": "timeseries"
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "1h",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "sum"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "0m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Worker Error Log count alert",
+        "noDataState": "keep_state",
+        "notifications": [
+          {
+             
+          }
+        ]
+      },
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "${datasource}"
+      },
+      "description": "Number of log entries that contributed to user-defined metrics",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "logging.googleapis.com/log_entry_count"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 45
+      },
+      "id": 44,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "",
+            "alignmentPeriod": "+1800s",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+        
+              "AND",
+              "metric.label.severity",
+              "=",
+              "ERROR",
+              "AND",
+              "metric.label.log",
+              "=",
+              "dataflow.googleapis.com/worker"
+            ],
+            "groupBys": [],
+            "metricKind": "DELTA",
+            "metricType": "logging.googleapis.com/log_entry_count",
+            "perSeriesAligner": "ALIGN_SUM",
+            "preprocessor": "none",
+            "projectName": "${projectId}",
+            "query": "",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "op": "gt",
+          "value": 0,
+          "visible": true
+        }
+      ],
+      "title": "Worker Error Log count",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "hide": 2,
+        "name": "PROJECT_ID",
+        "query": "$projectId",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [
+      "5s"
+    ]
+  },
+  "timezone": "",
+  "title": "Dataflow",
+  "uid": "yAjD4ECnz",
+  "version": 95,
+  "weekStart": ""
+}
